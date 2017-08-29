@@ -29,6 +29,5 @@ public class tipoNo{
 	public tipoNo getProx(){
 		return prox;
 	}
-
 	
 }
