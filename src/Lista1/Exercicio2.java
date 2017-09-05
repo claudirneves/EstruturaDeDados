@@ -5,7 +5,6 @@
  */
 package Lista1;
 
-
 import estruturadedados.tipoNo;
 import java.util.Scanner;
 
@@ -13,15 +12,11 @@ import java.util.Scanner;
  *
  * @author aluno
  */
-public class Exercicio1 {
-
-    /**
-     * @param args the command line arguments
-     */
-    Scanner entrada = new Scanner(System.in);
+public class Exercicio2 {
+     Scanner entrada = new Scanner(System.in);
     public tipoNo cabeca;
 
-    Exercicio1() {
+    Exercicio2() {
         System.out.println("Criando fila...(construtor fila)");
     }
 
@@ -131,12 +126,30 @@ public class Exercicio1 {
         }
         System.out.println("");
     }
+    public void dividirLista(int n){
+        if(cabeca != null){
+            int pos=1;
+            tipoNo aux;
+            aux = cabeca;
+            tipoNo novaCabeca;
+            while(pos !=n){
+                aux=aux.getProx();
+                pos++;
+            }
+            novaCabeca = aux;
+            novaCabeca = novaCabeca.getProx();
+            aux.setProx(null);
+            System.out.println("Novas Listas");
+            imprime();     
+        }
+    }
 
     public void menu() {
         int valor, opcao = 0, n;
         System.out.print("\n------------ Menu ------------\n");
         while (opcao != -1) {
-            System.out.printf("\nDigite a opcao: \n(1) Insere Inicio \n(2) Insere Fim \n(3) Remove Inicio \n(4) Remove Fim \n(5) Imprime\n(6) Remove n-esimo\n(-1) Sair \nOpcao: ");
+            System.out.printf("\nDigite a opcao: \n(1) Insere Inicio \n(2) Insere Fim \n"
+                    + "(3) Remove Inicio \n(4) Remove Fim \n(5) Imprime\n(6) Remove n-esimo\n(7 )Dividir Lista\n(-1) Sair \nOpcao: ");
             opcao = entrada.nextInt();
             switch (opcao) {
 
@@ -168,6 +181,11 @@ public class Exercicio1 {
                     n = entrada.nextInt();
                     removenesimo(n);
                     break;
+                case 7: //dividiLista
+                    System.out.print("Em qual posição deseja dividir a lista? ");
+                    n = entrada.nextInt();
+                    dividirLista(n);
+                    break;
                 case -1: //sair
                     System.out.println("Saindo!");
                     break;
@@ -183,8 +201,8 @@ public class Exercicio1 {
 
     public static void main(String args[]) {
         System.out.println("\n************ Lista Encadeada Dinâmica ************\n");
-        Exercicio1 exerc1 = new Exercicio1();
-        exerc1.menu();
+        Exercicio2 exerc2 = new Exercicio2();
+        exerc2.menu();
         System.out.println("\n************ Fim programa ************\n");
     }
 

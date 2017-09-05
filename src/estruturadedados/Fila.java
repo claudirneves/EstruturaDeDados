@@ -5,6 +5,7 @@
  */
 package estruturadedados;
 
+
 import java.util.Scanner;
 
 /**
@@ -60,6 +61,39 @@ public class Fila {
         cabeca = novo;
 
     }
+    public void removenesimo(int n){
+        
+            if(cabeca == null){
+                System.out.println("Lista vazia!");
+            }else{
+                //remocao do primeiro
+                int valor;
+                if(n==1){
+                    valor = cabeca.getInfo();
+                    cabeca = cabeca.getProx();
+                    System.out.println("Valor "+valor+" removido!");
+                }else{
+                    int pos=1;
+                    tipoNo aux;
+                    aux = cabeca;
+                    
+                    while(aux.getProx()!=null && pos != n-1){
+                        aux = aux.getProx();
+                        pos++;
+                    }
+                    if(aux.getProx()!=null){
+                        valor = aux.getProx().getInfo();
+                        aux.setProx(aux.getProx().getProx());
+                        System.out.println("Valor "+valor+" removido!");
+                    }else{
+                        System.out.println("Posicao inexistente!");
+                    }
+                } 
+            
+            }
+                
+        
+        }
 
     public void removeFinal() {
         tipoNo aux;
@@ -95,7 +129,7 @@ public class Fila {
     }
 
     public void menu() {
-        int valor, opcao = 0;
+        int valor, opcao = 0,n;
         System.out.print("\n------------ Menu ------------\n");
         while (opcao != -1) {
             System.out.printf("\nDigite a opcao: \n(1) Insere Inicio \n(2) Insere Fim \n(3) Remove Inicio \n(4) Remove Fim \n(5) Imprime\n(6) Imprime Terceiro\n(-1) Sair \nOpcao: ");
@@ -125,7 +159,11 @@ public class Fila {
                 case 5: //imprime
                     imprime();
                     break;
-
+                case 6: //removenesimo
+                    System.out.print("Digite o n-esimo:");
+                     n = entrada.nextInt();
+                     removenesimo(n);
+                     break;
                 case -1: //sair
                     System.out.println("Saindo!");
                     break;
