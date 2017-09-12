@@ -13,7 +13,8 @@ import java.util.Scanner;
  * @author aluno
  */
 public class Exercicio2 {
-     Scanner entrada = new Scanner(System.in);
+
+    Scanner entrada = new Scanner(System.in);
     public tipoNo cabeca;
 
     Exercicio2() {
@@ -126,21 +127,31 @@ public class Exercicio2 {
         }
         System.out.println("");
     }
-    public void dividirLista(int n){
-        if(cabeca != null){
-            int pos=1;
+
+    public void dividirLista(int n) {
+        if (cabeca != null) {
+            int pos = 1;
             tipoNo aux;
             aux = cabeca;
             tipoNo novaCabeca;
-            while(pos !=n){
-                aux=aux.getProx();
+            while (pos != n) {
+                aux = aux.getProx();
                 pos++;
             }
+            tipoNo novaAux;
             novaCabeca = aux;
             novaCabeca = novaCabeca.getProx();
             aux.setProx(null);
-            System.out.println("Novas Listas");
-            imprime();     
+            novaAux = novaCabeca;
+            System.out.println("Nova Lista");
+            while (novaAux != null) {
+                System.out.print(novaAux.getInfo() + " ");
+                novaAux = novaAux.getProx();
+            }
+        } else if(cabeca.getProx()==null){
+            System.out.println("Lista possui apenas um elemento");
+        }else{
+            System.out.println("Lista Vazia");
         }
     }
 
