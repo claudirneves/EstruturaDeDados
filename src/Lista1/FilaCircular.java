@@ -80,19 +80,42 @@ public class FilaCircular {
     }
 
     public void insereInicio(int info) {
-        tipoNo novo, aux;
+
         if (cabeca == null) {
             cabeca = new tipoNo();
             cabeca.setInfo(info);
             cabeca.setProx(cabeca);
         } else {
-            aux = cabeca;
+            tipoNo novo, aux;
             novo = new tipoNo();
             novo.setInfo(info);
             novo.setProx(cabeca);
-            cabeca.setProx(aux.getProx());
+            aux = cabeca;
+            while (aux.getProx() != cabeca) {
+                aux = aux.getProx();
+            }
+            aux.setProx(novo);
             cabeca = novo;
-            
+
+        }
+    }
+
+    public void removeFinal() {
+        tipoNo aux;
+        if (cabeca != null) {
+            if (cabeca.getProx() == null) {
+                cabeca = null;
+
+            } else {
+                aux = cabeca;
+                while (aux.getProx().getProx() != cabeca) {
+                    aux = aux.getProx();
+                }
+                aux.setProx(cabeca);
+            }
+            System.out.println("Elemento removido");
+        } else {
+            System.out.println("Fila vazia!");
         }
     }
 
@@ -119,15 +142,14 @@ public class FilaCircular {
                 case 3: //removeInicio
                     removeInicio();
                     break;
-               
-               /* case 4: //removeFinal
-                    removeFinal();
-                    break;*/
 
+                 case 4: //removeFinal
+                    removeFinal();
+                    break;
                 case 5: //imprime
                     imprime();
                     break;
-                  /* case 6: //removenesimo
+                /* case 6: //removenesimo
                     System.out.print("Digite o n-esimo:");
                     n = entrada.nextInt();
                     removenesimo(n);
